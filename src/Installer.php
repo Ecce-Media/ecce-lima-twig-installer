@@ -2,27 +2,33 @@
 
 namespace eccemedia\composer;
 
-use Composer\Composer;
-use Composer\Installer\BinaryInstaller;
-use Composer\Installer\LibraryInstaller as BaseLibraryInstaller;
+use Composer\Package\PackageInterface;
+use Composer\Installer\LibraryInstaller;
 
-use Composer\IO\IOInterface;
-use Composer\Util\Filesystem;
-
-class Installer extends BaseLibraryInstaller
+class Installer extends LibraryInstaller
 {
-    const TEMPLATES_VENDOR_DIR = './templates/_vendor';
-    const PACKAGE_TYPE = 'ecce-lima-twig';
-    
-    public function __construct(IOInterface $io, Composer $composer, $type = self::PACKAGE_TYPE, Filesystem $filesystem = null, BinaryInstaller $binaryInstaller = null)
+    /**
+     * {@inheritDoc}
+     */
+    public function getInstallPath(PackageInterface $package)
     {
-        parent::__construct($io, $composer, $type, $filesystem, $binaryInstaller);
-        $this->vendorDir = rtrim(self::TEMPLATES_VENDOR_DIR, '/');
-        $this->type = self::PACKAGE_TYPE;
+        /* $prefix = substr($package->getPrettyName(), 0, 23);
+        if ('phpdocumentor/template-' !== $prefix) {
+            throw new \InvalidArgumentException(
+                'Unable to install template, phpdocumentor templates '
+                .'should always start their package name with '
+                .'"phpdocumentor/template-"'
+            );
+        } */
+
+        return 'templates/'.substr($package->getPrettyName(), 23);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function supports($packageType)
     {
-        return $packageType === self::PACKAGE_TYPE;
+        return 'ecce-lima-twig' === $packageType;
     }
 }
