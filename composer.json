@@ -2,7 +2,7 @@
   "name": "ecce-media/ecce-lima-twig-installer",
   "description": "Composer installer for ecce-media/ecce-lima-twig",
   "type": "composer-plugin",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "license": "MIT",
   "autoload": {
     "psr-4": {
