@@ -1,6 +1,6 @@
 <?php
 
-namespace ecceemdia\composer;
+namespace eccemedia\composer;
 
 use Composer\Composer;
 use Composer\IO\IOInterface;
