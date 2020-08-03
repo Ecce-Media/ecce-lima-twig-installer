@@ -9,7 +9,7 @@ class Installer extends LibraryInstaller
 {
     public function getInstallPath(PackageInterface $package)
     {
-        return 'templates/' . $package->getPrettyName();
+        return 'templates/vendor/' . $package->getPrettyName();
         // return 'templates/ecce-lima-twig';
     }
     public function supports($packageType)
